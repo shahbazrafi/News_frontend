@@ -38,7 +38,7 @@ export default function Home() {
 
     return <>{topics.map(item => <Link to={`/topics/${item.slug}`}><p key={item.slug}>{item.slug}</p></Link>)}
     <div className="Articles">
-    <h1>{topic}</h1>
+    <h1>{topic ? topic : "All"}</h1>
     {articles.map(article => <Link to={`/article/${article.article_id}`}><ArticleInfo key={article.article_id} article={article}/></Link>)}
     </div>
     </>
