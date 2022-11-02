@@ -37,7 +37,14 @@
   }
 }
 
-.width50 {
-  display: inline-block;
-  width:50%
+.ArticleInfo {
+  display: inline-table;
+  width: 26em;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.Articles {
+  margin: 10px;
+
 }

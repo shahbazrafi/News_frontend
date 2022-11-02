@@ -10,9 +10,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/coding" element={<Home topic="coding"/>} />
-        <Route path="/football" element={<Home topic="football"/>} />
-        <Route path="/cooking" element={<Home topic="cooking"/>} />
+        <Route path="/topics/:topic" element={<Home topic="coding"/>} />
       </Routes>
     </div>
     </BrowserRouter>

@@ -1,7 +1,7 @@
 export default function ArticleInfo({article}) {
 
 
-    return <div className="width50">
+    return <div className="ArticleInfo">
         <h2>{article.title}</h2>
         <p>{article.topic}</p>
         <p>Author: {article.author}</p>

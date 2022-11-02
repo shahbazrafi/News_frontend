@@ -1,9 +1,10 @@
 import { useEffect, useState} from "react"
 import axios from "axios"
 import ArticleInfo from "./ArticleInfo"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
-export default function Home({topic}) {
+export default function Home() {
+    const {topic} = useParams()
     let [articles, setArticles] = useState()
     let [loadingArticles, setLoadingArticles] = useState(true)
     let [topics, setTopics] = useState()
@@ -35,9 +36,10 @@ export default function Home({topic}) {
 
     if (loadingArticles || loadingTopics) return <p>loading</p>
 
-    return <>{topics.map(item => <Link to={`/${item.slug}`}><p key={item.slug}>{item.slug}</p></Link>)}
-    <h2>{topic}</h2>
-    {articles.map(article => <ArticleInfo key={article.article_id} article={article}/>)}
-
+    return <>{topics.map(item => <Link to={`/topics/${item.slug}`}><p key={item.slug}>{item.slug}</p></Link>)}
+    <div className="Articles">
+    <h1>{topic}</h1>
+    {articles.map(article => <Link to={`/article/${article.article_id}`}><ArticleInfo key={article.article_id} article={article}/></Link>)}
+    </div>
     </>
 }
