@@ -18,7 +18,6 @@ export default function Home() {
 
     if (loading) return <p>loading</p>
 
-    // return <>{articles.map(article => <p>{article.article_id}</p>)}
     return <>{articles.map(article => <ArticleInfo key={article.article_id} article={article}/>)}
 
     </>
