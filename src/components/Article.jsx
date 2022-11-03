@@ -38,7 +38,7 @@ export default function Article() {
         <ArticleInfo key={article.article_id} article={article}/>
         <div className="ArticleBody">{article.body}</div>
     </div>
-        <p>Comments: {comments ? comments.length : null}</p>
+        <p>Comments: {comments ? comments.length : 0}</p>
     <div className="flex">
         {comments ? comments.map(comment => <Comment key={comment.comment_id} comment={comment}/>) : null}
     </div>
