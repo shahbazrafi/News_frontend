@@ -36,10 +36,11 @@ export default function Home() {
 
     if (loadingArticles || loadingTopics) return <p>loading</p>
 
-    return <>{topics.map(item => <Link to={`/topics/${item.slug}`}><p key={item.slug}>{item.slug}</p></Link>)}
-    <div className="Articles">
+    return <>
+    {topics.map(item => <Link to={`/topics/${item.slug}`}><p key={item.slug}>{item.slug}</p></Link>)}
     <h1>{topic ? topic : "All"}</h1>
-    {articles.map(article => <Link to={`/article/${article.article_id}`}><ArticleInfo key={article.article_id} article={article}/></Link>)}
+    <div className="flex">
+    {articles.map(article => <ArticleInfo key={article.article_id} article={article}/>)}
     </div>
     </>
 }
