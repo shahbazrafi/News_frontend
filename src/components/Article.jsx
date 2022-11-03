@@ -59,7 +59,7 @@ export default function Article({username}) {
         <p>{commentError === true? "There was an error" : null}</p>
         <p>Comments: {comments ? comments.length : "loading"}</p>
     <div className="flex">
-        {comments ? comments.map(comment => <Comment key={comment.comment_id} comment={comment}/>) : null}
+        {comments ? comments.map(comment => <Comment key={comment.comment_id} comment={comment} username={username}/>) : null}
     </div>
     </>
 }
