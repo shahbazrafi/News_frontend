@@ -28,7 +28,7 @@ export default function Article() {
             setComments(data.comments)
         })
         .catch(err => console.log("error", err))
-    }, [article_id]) 
+    }, [article_id, comments]) 
 
     if (loadingArticle) return <p>loading</p>
 
@@ -38,9 +38,9 @@ export default function Article() {
         <ArticleInfo key={article.article_id} article={article}/>
         <div className="ArticleBody">{article.body}</div>
     </div>
-        <p>Comments: {comments.length}</p>
+        <p>Comments: {comments ? comments.length : null}</p>
     <div className="flex">
-        {comments.map(comment => <Comment key={comment.comment_id} comment={comment}/>)}
+        {comments ? comments.map(comment => <Comment key={comment.comment_id} comment={comment}/>) : null}
     </div>
     </>
 }
