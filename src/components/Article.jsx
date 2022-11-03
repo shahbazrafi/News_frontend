@@ -2,7 +2,7 @@ import ArticleInfo from "./ArticleInfo"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 import { useEffect, useState} from "react"
-
+import Comment from "./Comment"
 
 export default function Article() {
     const {article_id} = useParams()
@@ -37,6 +37,10 @@ export default function Article() {
     <div className="flex">
         <ArticleInfo key={article.article_id} article={article}/>
         <div className="ArticleBody">{article.body}</div>
+    </div>
+        <p>Comments: {comments.length}</p>
+    <div className="flex">
+        {comments.map(comment => <Comment key={comment.comment_id} comment={comment}/>)}
     </div>
     </>
 }
