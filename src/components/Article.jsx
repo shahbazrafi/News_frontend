@@ -51,15 +51,15 @@ export default function Article({username}) {
         <ArticleInfo key={article.article_id} article={article}/>
         <div className="ArticleBody">{article.body}</div>
     </div>
-        <p>Comments: {comments.length}</p>
         <form onSubmit={submitComment}>
             <label>New Comment: </label>
             <input value={commentInput} onChange={(event) => {setCommentInput(event.target.value)}}></input>
             <button type="submit">Submit</button>
         </form>
         <p>{commentError === true? "There was an error" : null}</p>
+        <p>Comments: {comments ? comments.length : "loading"}</p>
     <div className="flex">
-        {comments.map(comment => <Comment key={comment.comment_id} comment={comment}/>)}
+        {comments ? comments.map(comment => <Comment key={comment.comment_id} comment={comment}/>) : null}
     </div>
     </>
 }
