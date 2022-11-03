@@ -39,7 +39,7 @@ export default function Article({username}) {
     function submitComment(event) {
         event.preventDefault()
         axios.post(`https://nc-news-backend-shahbazrafi.herokuapp.com/api/articles/${article_id}/comments`, {username: username, body: commentInput})
-        .then()
+        .then(() => {setCommentError(false)})
         .catch(() => {setCommentError(true)})
     }
 
