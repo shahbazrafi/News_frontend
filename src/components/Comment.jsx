@@ -29,7 +29,7 @@ export default function Comment({comment, username}) {
         .then()
         .catch(() => {
             setDeletedComment(false)
-            setDeletedCommentError("Sorry, there was an error")})
+            setDeletedCommentError("Sorry, there is an error")})
     }
 
     return <div className="Comments">

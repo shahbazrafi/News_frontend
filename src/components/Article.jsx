@@ -1,5 +1,5 @@
 import ArticleInfo from "./ArticleInfo"
-import { useParams } from "react-router-dom"
+import { useParams, Navigate } from "react-router-dom"
 import axios from "axios"
 import { useEffect, useState} from "react"
 import Comment from "./Comment"
@@ -10,6 +10,7 @@ export default function Article({username}) {
 
     let [article, setArticle] = useState()
     let [loadingArticle, setLoadingArticle] = useState(true)
+    let [loadingArticleError, setLoadingArticleError] = useState(false)
     let [comments, setComments] = useState()
 
     useEffect(() => {
@@ -19,7 +20,10 @@ export default function Article({username}) {
             setArticle(data.articles)
             setLoadingArticle(false)
         })
-        .catch(err => console.log("error", err))
+        .catch(err => {
+            setLoadingArticle(false)
+            setLoadingArticleError(true)
+        })
     }, [article_id]) 
 
     useEffect(() => {
@@ -35,7 +39,7 @@ export default function Article({username}) {
     let [commentError, setCommentError] = useState(false)
 
     if (loadingArticle) return <p>loading</p>
-
+    if (loadingArticleError) return <p>error loading article</p>
     function submitComment(event) {
         event.preventDefault()
         axios.post(`https://nc-news-backend-shahbazrafi.herokuapp.com/api/articles/${article_id}/comments`, {username: username, body: commentInput})
@@ -56,7 +60,7 @@ export default function Article({username}) {
             <input value={commentInput} onChange={(event) => {setCommentInput(event.target.value)}}></input>
             <button type="submit">Submit</button>
         </form>
-        <p>{commentError === true? "There was an error" : null}</p>
+        <p>{commentError === true? "Sorry, there is an error" : null}</p>
         <p>Comments: {comments ? comments.length : "loading"}</p>
     <div className="flex">
         {comments ? comments.map(comment => <Comment key={comment.comment_id} comment={comment} username={username}/>) : null}
