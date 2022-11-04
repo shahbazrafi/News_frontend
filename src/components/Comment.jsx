@@ -1,6 +1,5 @@
 import { useState} from "react"
-import axios from "axios"
-
+import * as api from "../api"
 
 export default function Comment({comment, username}) {
     let {comment_id, body, author, votes, created_at} = comment
@@ -25,11 +24,11 @@ export default function Comment({comment, username}) {
 
     function deleteComment () {
         setDeletedComment(true)
-        axios.delete(`https://nc-news-backend-shahbazrafi.herokuapp.com/api/comments/${comment_id}`)
+        api.deleteComment(comment_id)
         .then()
         .catch(() => {
             setDeletedComment(false)
-            setDeletedCommentError("Sorry, there was an error")})
+            setDeletedCommentError("Sorry, there is an error")})
     }
 
     return <div className="Comments">
