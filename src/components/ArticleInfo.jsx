@@ -1,23 +1,23 @@
 import { Link } from "react-router-dom"
 import { useState} from "react"
-import axios from "axios"
+import * as api from "../api"
 
 export default function ArticleInfo({article}) {
     let [addVote, setAddVote] = useState(0)
     let {article_id, title, topic, author, created_at, comment_count, votes} = article
 
     function voteUp () {
-        setAddVote((x) => x+1)
-        axios.patch(`https://nc-news-backend-shahbazrafi.herokuapp.com/api/articles/${article_id}`, { inc_votes : 1})
+        setAddVote((currentVotes) => currentVotes+1)
+        api.patchVotesByArticle(article_id, 1)
         .then()
-        .catch(() => setAddVote((x) => x-1))
+        .catch(() => setAddVote((currentVotes) => currentVotes-1))
     }
 
     function voteDown () {
-        setAddVote((x) => x-1)
-        axios.patch(`https://nc-news-backend-shahbazrafi.herokuapp.com/api/articles/${article_id}`, { inc_votes : -1})
+        setAddVote((currentVotes) => currentVotes-1)
+        api.patchVotesByArticle(article_id, -1)
         .then()
-        .catch(() => setAddVote((x) => x+1))
+        .catch(() => setAddVote((currentVotes) => currentVotes+1))
     }
 
     return <div className="ArticleInfo">

@@ -2,6 +2,7 @@ import { useEffect, useState} from "react"
 import axios from "axios"
 import ArticleInfo from "./ArticleInfo"
 import { Link, useParams} from "react-router-dom"
+import * as api from "../api"
 
 export default function Home() {
     const {topic} = useParams()
@@ -12,15 +13,14 @@ export default function Home() {
     let [order, setOrder] = useState("ASC")
     let [loadingTopics, setLoadingTopics] = useState(true)
 
-
-
     useEffect(() => {
         setLoadingArticles(true)
-        let url = "https://nc-news-backend-shahbazrafi.herokuapp.com/api/articles?"
-        if (sort_by) url+= `sort_by=${sort_by}`
-        if (order) url+= `&order=${order}`
-        if (topic) url+= `&topic=${topic}`
-        axios.get(url)
+        let params = {params: {}}
+        if (sort_by) params.params.sort_by = sort_by
+        if (order) params.params.order = order
+        if (topic) params.params.topic = topic
+
+        api.getArticles(params)
         .then(({data}) => {
             setArticles(data.articles)
             setLoadingArticles(false)
