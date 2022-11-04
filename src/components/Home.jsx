@@ -41,7 +41,7 @@ export default function Home() {
     if (loadingArticles || loadingTopics) return <p>loading</p>
 
     return <>
-    {topics.map(item => <Link to={`/topics/${item.slug}`}><p key={item.slug}>{item.slug}</p></Link>)}
+    {topics.map(item => <Link key={item.slug} to={`/topics/${item.slug}`}><p>{item.slug}</p></Link>)}
     <h1>{topic ? topic : "All"}</h1>
     <form>
         <label>Sort by: </label>

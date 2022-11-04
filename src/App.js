@@ -4,10 +4,11 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Article from './components/Article';
 import PageNotFound from './components/PageNotFound'
-import {useState} from "react"
+// import {useState} from "react"
 
 function App() {
-  let [username, setUsername] = useState("grumpy19")
+  // let [username, setUsername] = useState("grumpy19")
+  let username = "grumpy19"
 
   return (
     <BrowserRouter>
