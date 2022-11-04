@@ -1,5 +1,5 @@
 import './App.css';
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from './components/Header';
 import Home from './components/Home';
 import Article from './components/Article';
@@ -11,7 +11,7 @@ function App() {
   let username = "grumpy19"
 
   return (
-    <HashRouter>
+    <BrowserRouter>
     <div className="App">
       <Header username={username}/>
       <Routes>
@@ -24,7 +24,7 @@ function App() {
 
       </Routes>
     </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
