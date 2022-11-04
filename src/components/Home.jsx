@@ -58,6 +58,7 @@ export default function Home() {
             <option value="ASC">Ascending</option>
         </select>
     </form>
+    <p>{articles.length === 0 ? "Sorry, there is an error with the topic name" : null}</p>
     <div className="flex">
     {articles.map(article => <ArticleInfo key={article.article_id} article={article}/>)}
     </div>
